@@ -1,8 +1,19 @@
-## Hyprland on Arch dotfiles + an install script
+## My dotfiles
 
-## How to install? 
+- This is my hyprland setup, that can be installed for Fedora and Arch Linux.
 
-- Run `install.sh`
+## How to install?
+
+## Fedora
+
+- Run `fedorainstall.sh`
 - Put your sudo password in required fields
-- Make sure to reboot after install.sh is done
-- (OPTIONAL) Rub ohmyzsh.sh if you want themed zsh
+- Make sure to reboot after fedorainstall.sh is done
+- (Optional): Run ohmyzsh.sh if you want themed terminal
+
+## Arch Linux
+
+- Run `archinstall.sh`
+- Put your sudo password in required fields
+- Make sure to reboot after archinstall.sh is done
+- (Optional): Run ohmyzsh.sh if you want themed terminal
