@@ -21,6 +21,9 @@ pacman_packages=(
     bluez-utils
     eza
     bluez
+    qt6-svg
+    qt6-declarative
+    ttf-font-awesome
     qt5ct
     qt6ct
     grim
