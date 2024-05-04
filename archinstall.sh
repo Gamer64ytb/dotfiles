@@ -50,6 +50,7 @@ yay_packages=(
     pfetch
     xfce-polkit
     waypaper-git
+    hyprshot-git
 )
 
 # install pacman packages
