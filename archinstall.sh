@@ -48,7 +48,8 @@ sudo pacman -S --noconfirm \
 # Install packages with yay
 yay -S --noconfirm \
     xfce-polkit \
-    rofi-greenclip
+    rofi-greenclip \
+    waypaper-git
 
 # Install packages with yay
 for pkg in "${yay_packages[@]}"; do
@@ -58,7 +59,6 @@ for pkg in "${yay_packages[@]}"; do
 done
 
 echo "All packages have been installed."
-
 
 # Make .local if it doesnt exist so stow doesnt symlink the entire .local folder
 mkdir -p ~/.local
@@ -141,4 +141,3 @@ if [ "$answer" == "yes" ]; then
 else
     echo "Skipping reboot."
 fi
-
