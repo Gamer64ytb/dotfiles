@@ -48,7 +48,6 @@ sudo pacman -S --noconfirm \
 # Install packages with yay
 yay -S --noconfirm \
     xfce-polkit \
-    i3lock-fancy-git \
     rofi-greenclip
 
 # Install packages with yay
