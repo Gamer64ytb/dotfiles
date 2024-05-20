@@ -345,8 +345,8 @@ globalkeys = gears.table.join(
               {description = "open Thunar file manager", group = "launcher"}),
     awful.key({ modkey }, "c", function () awful.spawn("code") end,
               {description = "open VS Code", group = "launcher"}),
-    awful.key({ modkey }, "f", function () awful.spawn("thorium-browser") end,
-              {description = "open Thorium Browser", group = "launcher"}),
+    awful.key({ modkey }, "f", function () awful.spawn("firefox") end,
+              {description = "open Firefox", group = "launcher"}),
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.spawn("pamixer -i 5") end,
               {description = "increase volume", group = "media"}),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.spawn("pamixer -d 5") end,
@@ -600,7 +600,7 @@ awful.rules.rules = {
     { rule = { class = "Thunar" },
       properties = { screen = 1, tag = "2" } },
 
-    { rule = { class = "Thorium-browser" },
+    { rule = { class = "Firefox" },
       properties = { screen = 1, tag = "3" } },
 
     { rule = { class = "Code" },
