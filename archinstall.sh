@@ -39,6 +39,7 @@ sudo pacman -S --noconfirm \
     playerctl \
     pavucontrol \
     gnome-keyring \
+    lxrandr \
     rofi \
     fastfetch \
     gnome-software \
