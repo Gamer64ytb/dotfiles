@@ -4,3 +4,4 @@ xrdb -merge ~/.Xresources &
 greenclip daemon &
 picom --backend glx -b 
 dunst &
+corectrl &
