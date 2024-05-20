@@ -96,7 +96,11 @@ beautiful.fullscreen_hide_border = true
 beautiful.master_width_factor = 0.58
 
 awful.spawn.with_shell("~/.config/awesome/polybar.sh")
+awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 
+-- Disable window snapping borders
+awful.mouse.snap.edge_enabled = false
+awful.mouse.snap.client_enabled = false
 
 -- Function to center and resize a floating window
 local function center_floating_client(c)
@@ -619,7 +623,7 @@ awful.rules.rules = {
       properties = { screen = 1, tag = "7" } },
 
     { rule = { class = "Mailspring" },
-      properties = { floating = true, tag = "8" } },
+      properties = { floating = false, tag = "8" } },
 
     { rule = { class = "Spotify" },
       properties = { screen = 1, tag = "9" } },
