@@ -1,17 +1,17 @@
-configuration{
-    modi: "run,drun,window";
-    icon-theme: "Oranchelo";
-    show-icons: true;
-    terminal: "alacritty";
-    drun-display-format: "{icon} {name}";
-    location: 0;
-    disable-history: false;
-    hide-scrollbar: true;
-    display-drun: "   Apps ";
-    display-run: "   Run ";
-    display-window: " 﩯  Window";
-    display-Network: " 󰤨  Network";
-    sidebar-mode: true;
-}
+@theme "~/.local/share/rofi/themes/style-2.rasi"
 
-@theme "catppuccin-mocha"
+/* ---- Configuration ---- */
+configuration {
+    modi:                       "drun,run";
+    font:                       "Roboto Mono 1";
+    show-icons:                 true;
+    icon-theme:                 "Papirus";
+	hover-select:               true;
+    sort:                       false;
+    threads:                        0;
+	click-to-exit:              true;
+    me-select-entry:            "";
+    me-accept-entry:            "MousePrimary";
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";   
+}

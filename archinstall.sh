@@ -1,66 +1,57 @@
 #!/bin/bash
 
-# define pacman packages to install
-pacman_packages=(
-    stow
-    xdg-desktop-portal-gtk
-    nemo
-    alacritty
-    zsh
-    power-profiles-daemon
-    waybar
-    gnome-disk-utility
-    brightnessctl
-    flatpak
-    gvfs
-    swaybg 
-    gvfs-mtp
-    xdg-user-dirs
-    network-manager-applet
-    blueman
-    bluez-utils
-    eza
-    bluez
-    qt6-svg
-    qt6-declarative
-    ttf-font-awesome
-    qt5ct
-    qt6ct
-    grim
-    slurp
-    udiskie
-    kvantum
-    kvantum-qt5 
-    cliphist
-    pamixer
-    playerctl
-    papirus-icon-theme
-    pavucontrol
-)
+# Define packages to be installed with pacman
+# Install packages with pacman
+sudo pacman -S --noconfirm \
+    stow \
+    xdg-desktop-portal-gtk \
+    thunar \
+    picom \
+    flameshot \
+    xclip \
+    polybar \
+    alacritty \
+    zsh \
+    power-profiles-daemon \
+    gnome-disk-utility \
+    brightnessctl \
+    flatpak \
+    gvfs \
+    gvfs-mtp \
+    xdg-user-dirs \
+    network-manager-applet \
+    blueman \
+    bluez-utils \
+    eza \
+    bluez \
+    qt6-svg \
+    qt6-declarative \
+    ttf-font-awesome \
+    qt5ct \
+    qt6ct \
+    grim \
+    slurp \
+    udiskie \
+    kvantum \
+    kvantum-qt5 \
+    cliphist \
+    pamixer \
+    playerctl \
+    pavucontrol \
+    gnome-keyring \
+    rofi \
+    fastfetch \
+    gnome-software \
+    amd-ucode \
+    xf86-video-amdgpu
 
-# define yay packages to install
-yay_packages=(
-    wlogout
-    waybar-module-pacman-updates-git
-    swaync
-    hyprlock-git
-    rofi-lbonn-wayland-git
-    pyprland
-    hypridle-git
-    pfetch
-    xfce-polkit
-    waypaper-git
-    hyprshot-git
-)
+# Install packages with yay
+yay -S --noconfirm \
+    xfce-polkit \
+    i3lock-fancy-git \
+    rofi-greenclip
 
-# install pacman packages
-for pkg in "${pacman_packages[@]}"; do
-    echo "Installing $pkg with pacman..."
-    sudo pacman -S --noconfirm $pkg
-    sleep 2 # delay for readability and control
-done
-
-# install yay packages
+# Install packages with yay
 for pkg in "${yay_packages[@]}"; do
     echo "Installing $pkg with yay..."
     yay -S --noconfirm $pkg
@@ -69,11 +60,16 @@ done
 
 echo "All packages have been installed."
 
-# run stow to sync dotfiles
+
+# Make .local if it doesnt exist so stow doesnt symlink the entire .local folder
+mkdir -p ~/.local
+mkdir ~/.local/share
+
+# Run stow to sync dotfiles
 echo "Syncing dotfiles with stow..."
 stow .
 
-# init services
+# Start daemons
 echo "Starting services..."
 sudo systemctl enable power-profiles-daemon.service
 sudo systemctl start power-profiles-daemon.service
@@ -82,47 +78,68 @@ sudo systemctl start bluetooth
 sudo systemctl enable sddm
 sudo systemctl set-default graphical.target
 
-# set default terminal (alacritty)
-echo "Default terminal as alacritty..."
+# Set default terminal as Alacritty
+echo "Default terminal as Alacritty..."
 gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 
-# nuke pointless packages
-sudo pacman -Rsn kitty dunst dolphin vim wofi
+# Uninstall useless packages
+sudo pacman -Rsn xterm vim
 
-# update the user directories
+# Update the user directories
 echo "Updating user directories..."
 xdg-user-dirs-update
 
-# use the catppucin theme for flatpak
-echo "Configuring flatpak to use the pywal GTK theme..."
+# Use the Catppucin theme for flatpak and GTK4
+echo "Configuring flatpak to use the catppuccin GTK theme..."
+mkdir -p ~/.config/gtk-4.0
+ln -s  ~/.themes/Catppuccin-Macchiato-Standard-Teal-Dark/gtk-4.0/assets ~/.config/gtk-4.0
+ln -s ~/.themes/Catppuccin-Macchiato-Standard-Teal-Dark/gtk-4.0/gtk.css ~/.config/gtk-4.0/gtk.css
+ln -s ~/.themes/Catppuccin-Macchiato-Standard-Teal-Darkgtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk-dark.css
+
+sudo flatpak override --env=GTK_THEME=Catppuccin-Macchiato-Standard-Teal-Dark
+
+sudo flatpak override --filesystem=~/.themes
 sudo flatpak override --filesystem=xdg-config/gtk-4.0
 sudo flatpak override --filesystem=xdg-config/gtk-3.0
 sudo flatpak override --filesystem=xdg-config/Kvantum:ro
 sudo flatpak override --env=QT_STYLE_OVERRIDE=kvantum
 flatpak install org.kde.KStyle.Kvantum/x86_64/5.15-22.08 org.kde.KStyle.Kvantum/x86_64/5.15-23.08 org.kde.KStyle.Kvantum/x86_64/6.5 org.kde.KStyle.Kvantum/x86_64/6.6 org.kde.KStyle.Kvantum/x86_64/5.15 org.kde.KStyle.Kvantum/x86_64/5.15-21.08
 
-# change default shell to zsh
+# Change default shell to zsh
 echo "Changing shell to ZSH..."
 chsh -s /bin/zsh
 
-# make sddm conf
-sudo touch /etc/sddm.conf 
+# Make SDDM conf
+sudo touch /etc/sddm.conf
 
-# backup sddm configuration file
-echo "Creating a backup of the sddm configuration file..."
+# Create a backup of the SDDM configuration file
+echo "Creating a backup of the SDDM configuration file..."
 sudo cp /etc/sddm.conf /etc/sddm.conf.bak
 
-# set up sddm theme
+# Set up SDDM theme
 echo "Setting up sddm theme..."
 sudo cp -r  ~/dotfiles/sddm/catppuccin-macchiato/ /usr/share/sddm/themes/
 sudo sed -i.bak '/\[Theme\]/,/^\[/s/.*//g' /etc/sddm.conf && echo -e "[Theme]\nCurrent=catppuccin-macchiato" | sudo tee -a /etc/sddm.conf
 
-# ask to the user if they would like to reboot
-echo "Install done."
-read -p "A reboot is recommended, would you like to reboot now? (yes/no): " answer
+# Ask the user if they would like to install a lock screen
+read -p "Would you like to install a lock screen (RECCOMENDED: YES)? (yes/no): " answer
+if [ "$answer" == "yes" ]; then
+    echo "Dancing with you..."
+    yay -S --noconfirm i3lock-color-git
+    sudo pacman -S --noconfirm imagemagick awk
+    git clone https://github.com/meskarune/i3lock-fancy.git
+    cd i3lock-fancy
+    sudo make install
+else
+    echo "But now who's gonna dance with me?."
+fi
+
+# Ask the user if they would like to reboot
+read -p "Would you like to reboot now (RECCOMENDED: YES)? (yes/no): " answer
 if [ "$answer" == "yes" ]; then
     echo "Rebooting..."
     sudo reboot
 else
     echo "Skipping reboot."
 fi
+

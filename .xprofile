@@ -1,0 +1,6 @@
+waypaper --restore &
+/usr/lib/xfce-polkit/xfce-polkit &
+xrdb -merge ~/.Xresources &
+greenclip daemon &
+picom --backend glx -b 
+dunst &

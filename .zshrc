@@ -83,6 +83,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -91,6 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 export EDITOR=nvim
 export VISUAL="$EDITOR"
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,3 +111,8 @@ export PATH="$PATH:/home/kleidis/.local/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(zoxide init zsh)"
+
+
+export PATH=$PATH:/home/kleidis/.spicetify

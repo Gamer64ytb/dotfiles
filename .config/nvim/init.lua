@@ -24,6 +24,8 @@ require('packer').startup(function()
     -- Packer plugins
     use("petertriho/nvim-scrollbar")
     use 'akinsho/nvim-bufferline.lua'
+    use 'lambdalisue/suda.vim'
+    use 'Exafunction/codeium.vim'
     use { "catppuccin/nvim", as = "catppuccin" }
 end)
 

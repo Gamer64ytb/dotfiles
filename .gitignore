@@ -30,3 +30,10 @@
 .config/qt6ct/qt6ct.conf
 .config/dconf/user
 .config/qt5ct/qt5ct.conf
+/.config/dconf
+/.config/qt6ct
+/.local/share/sddm
+/.local/share/keyrings
+/.local/share/gvfs-metadata
+/.config/qt6ct
+/.config/qt5ct
