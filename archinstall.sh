@@ -124,20 +124,20 @@ sudo cp -r  ~/dotfiles/sddm/catppuccin-macchiato/ /usr/share/sddm/themes/
 sudo sed -i.bak '/\[Theme\]/,/^\[/s/.*//g' /etc/sddm.conf && echo -e "[Theme]\nCurrent=catppuccin-macchiato" | sudo tee -a /etc/sddm.conf
 
 # Ask the user if they would like to install a lock screen
-read -p "Would you like to install a lock screen (RECCOMENDED: YES)? (yes/no): " answer
+read -p "Would you like to install a lock screen? (yes/no): " answer
 if [ "$answer" == "yes" ]; then
-    echo "Dancing with you..."
+    echo "Installing lockscreen..."
     yay -S --noconfirm i3lock-color-git
     sudo pacman -S --noconfirm imagemagick awk
     git clone https://github.com/meskarune/i3lock-fancy.git
     cd i3lock-fancy
     sudo make install
 else
-    echo "But now who's gonna dance with me?."
+    echo "Skipping lockscreen."
 fi
 
 # Ask the user if they would like to reboot
-read -p "Would you like to reboot now (RECCOMENDED: YES)? (yes/no): " answer
+read -p "Would you like to reboot now? (yes/no): " answer
 if [ "$answer" == "yes" ]; then
     echo "Rebooting..."
     sudo reboot
