@@ -60,8 +60,6 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
-
-
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -132,7 +130,6 @@ local function center_floating_client(c)
     end
 end
 
-
 -- Connect this function to the client's property change signal
 client.connect_signal("property::floating", center_floating_client)
 client.connect_signal("manage", center_floating_client)
@@ -148,8 +145,6 @@ local my_scratchpad = bling.module.scratchpad:new({
     autostart = false,
     dont_focus_before_close = false     -- focus the scratchpad before closing it
 })
-
-
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -262,7 +257,6 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, visible = false })
-
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -594,7 +588,6 @@ awful.rules.rules = {
 
     --My workspace rules
 
-
     { rule = { class = "Polybar" },
       properties = { border_width = 0 } },
 
@@ -648,7 +641,6 @@ awful.rules.rules = {
                      x=760, y=450, width = 400, height = 200, centered = true } },
 }
 
-
 -- }}}
 
 -- {{{ Signals
@@ -680,7 +672,6 @@ client.connect_signal("manage", function(c)
     end
 end)
 
-
 client.connect_signal("property::fullscreen", function(c)
     if c.fullscreen then
         -- Set border width to 0 when a client is fullscreen
@@ -690,7 +681,6 @@ client.connect_signal("property::fullscreen", function(c)
         c.border_width = beautiful.border_width
     end
 end)
-
 
 client.connect_signal("property::maximized", function(c)
     if c.maximized then
@@ -709,7 +699,6 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 client.connect_signal("property::floating", center_floating_client)
-
 
 client.connect_signal("property::minimized", function(c)
     c.minimized = false

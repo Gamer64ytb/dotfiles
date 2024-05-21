@@ -12,6 +12,3 @@ style = "Regular"
 [window]
 opacity = 0.85
 padding = { x = 15, y = 15}
-
-
-
