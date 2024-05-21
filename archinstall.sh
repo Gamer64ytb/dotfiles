@@ -45,6 +45,7 @@ sudo pacman -S --noconfirm \
     gnome-software \
     amd-ucode \
     xf86-video-amdgpu \
+    mousepad \
     sddm
 
 # Install packages with yay
