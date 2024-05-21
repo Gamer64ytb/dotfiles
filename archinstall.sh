@@ -44,7 +44,8 @@ sudo pacman -S --noconfirm \
     fastfetch \
     gnome-software \
     amd-ucode \
-    xf86-video-amdgpu
+    xf86-video-amdgpu \
+    sddm
 
 # Install packages with yay
 yay -S --noconfirm \

@@ -1,8 +1,13 @@
-## AwesomeWM on Arch dotfiles + an install script
+## My dotfiles
 
-## How to install? 
+- This is my awesome setup, that can be installed on Arch Linux.
 
-- Run `archinstall.sh`
+## How to install?
+
+- WARNING: Internet connection is required. In case you don't use ethernet, run `nmtui` on command line and select your wifi modem.
+
+## Arch Linux
+
+- Run `archinstall.sh` using `./archinstall.sh` command
 - Put your sudo password in required fields
-- Make sure to reboot after install.sh is done
-- (OPTIONAL) Rub ohmyzsh.sh if you want themed zsh
+- Make sure to reboot after archinstall.sh is done
