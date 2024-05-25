@@ -82,7 +82,7 @@ awful.layout.layouts = {
 -- }}}
 
 -- Set border width and color
-beautiful.border_width = 3
+beautiful.border_width = 0
 beautiful.border_normal =  "#24273a"
 beautiful.border_focus = "#cad3f5"
 beautiful.useless_gap = 5
@@ -331,6 +331,18 @@ globalkeys = gears.table.join(
 
     -- My Keybinds
 
+    awful.key({}, "XF86MonBrightnessUp", function () awful.spawn("brightnessctl s +5%") end,
+              {description = "increase brightness", group = "custom"}),
+    awful.key({}, "XF86MonBrightnessDown", function () awful.spawn("brightnessctl s 5%-") end,
+              {description = "decrease brightness", group = "custom"}),
+    -- Toggle a window to maximize over all windows on a tag
+    awful.key({ modkey, "Control" }, "p", function ()
+        local c = client.focus
+        if c then
+            c.maximized = not c.maximized  -- Toggle maximization state
+            c:raise()  -- Bring the window to the front
+        end
+    end, {description = "toggle maximize over all windows", group = "client"}),
     awful.key({ modkey }, "g", function () awful.spawn("github-desktop") end,
               {description = "open Github Desktop", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "l", function () awful.spawn("i3lock-fancy") end,
@@ -623,6 +635,9 @@ awful.rules.rules = {
 
     { rule = { class = "spad" },
       properties = { screen = 1, tag = "nil", autostart=false } },
+
+    { rule = { instance = "xdg-desktop-portal-gtk" },
+      properties = { floating = true, tag = "nil" } },
 
     { rule = { name = "All Files" },
       properties = { screen = 1, tag = "nil" } },

@@ -37,3 +37,4 @@
 /.local/share/gvfs-metadata
 /.config/qt6ct
 /.config/qt5ct
+.config/awesome/restart-nvidia.sh

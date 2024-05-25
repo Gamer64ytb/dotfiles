@@ -1,6 +1,7 @@
 ## My dotfiles
 
 - This is my awesome setup, that can be installed on Arch Linux.
+- It uses pywal, a engine that set app colors according to your wallpaper.
 
 ## How to install?
 
