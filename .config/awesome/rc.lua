@@ -82,7 +82,7 @@ awful.layout.layouts = {
 -- }}}
 
 -- Set border width and color
-beautiful.border_width = 0
+beautiful.border_width = 1
 beautiful.border_normal =  "#24273a"
 beautiful.border_focus = "#cad3f5"
 beautiful.useless_gap = 5
@@ -351,6 +351,8 @@ globalkeys = gears.table.join(
               {description = "capture screen with flameshot", group = "screenshot"}),
     awful.key({ modkey }, "a", function () my_scratchpad:toggle() end,
         {description = "toggle scratchpad", group = "custom"}),
+    awful.key({ modkey }, "`", function () local screen = awful.screen.focused() local tag = screen.tags[6] if tag then tag:view_only() end end,
+              {description = "view workspace 6", group = "workspace"}),
     awful.key({ modkey }, "e", function () awful.spawn("Thunar") end,
               {description = "open Thunar file manager", group = "launcher"}),
     awful.key({ modkey }, "c", function () awful.spawn("code") end,
@@ -604,7 +606,7 @@ awful.rules.rules = {
       properties = { border_width = 0 } },
 
     { rule = { },
-      properties = { screen = 1, tag = "1" } },
+      properties = { screen = 1, tag = "6" } },
 
     { rule = { class = "Thunar" },
       properties = { screen = 1, tag = "2" } },
@@ -622,7 +624,7 @@ awful.rules.rules = {
       properties = { screen = 1, tag = "5" } },
 
     { rule = { class = "Alacritty" },
-      properties = { screen = 1, tag = "6" } },
+      properties = { screen = 1, tag = "1" } },
 
     { rule = { class = "steam" },
       properties = { screen = 1, tag = "7" } },
@@ -645,15 +647,23 @@ awful.rules.rules = {
     { rule = { class = "PeaZip" },
       properties = { floating = true, tag = "nil" } },
 
-      { rule = { class = "qView" },
-      properties = { floating = true, tag = "nil" } },
+    { rule = { class = "qView" },
+    properties = { floating = true, tag = "nil" } },
 
-      { rule = { class = "mpv" },
-      properties = { floating = true, tag = "nil" } },
+    { rule = { class = "mpv" },
+    properties = { floating = true, tag = "nil" } },
 
-      { rule = { name = "Authentication required" },
-      properties = { screen = 1, tag = "nil", ontop = true,
+    { rule = { name = "Authenticate" },
+    properties = { screen = 1, tag = "nil", ontop = true,
+                    x=760, y=450, width = 400, height = 200, centered = true } },
+    
+    { rule = { class = "polkit-mate-authentication-agent-1" },
+    properties = { screen = 1, tag = "nil", ontop = true,
                      x=760, y=450, width = 400, height = 200, centered = true } },
+                    
+    { rule = { class = "copyq" },
+    properties = { screen = 1, tag = "nil", ontop = true,
+                    centered = true } },                 
 }
 
 -- }}}

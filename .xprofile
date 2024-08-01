@@ -1,5 +1,5 @@
-waypaper --restore &
-/usr/lib/xfce-polkit/xfce-polkit &
+nitrogen --restore &
+/usr/libexec/polkit-mate-authentication-agent-1 &
 xrdb -merge ~/.Xresources &
 greenclip daemon &
 picom --backend glx -b 

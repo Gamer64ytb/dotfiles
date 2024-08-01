@@ -42,18 +42,15 @@ sudo pacman -S --noconfirm \
     lxrandr \
     rofi \
     fastfetch \
+    gnome-software \
     amd-ucode \
-    xf86-video-amdgpu \
-    mousepad \
-    sddm
+    xf86-video-amdgpu
 
 # Install packages with yay
 yay -S --noconfirm \
     xfce-polkit \
     rofi-greenclip \
-    waypaper-git \
-    pywal-16-colors \
-    pywal-discord-git
+    waypaper-git
 
 # Install packages with yay
 for pkg in "${yay_packages[@]}"; do
@@ -92,13 +89,16 @@ sudo pacman -Rsn xterm vim
 echo "Updating user directories..."
 xdg-user-dirs-update
 
-# Use the pywal theme for flatpak and GTK4
+# Use the Catppucin theme for flatpak and GTK4
+echo "Configuring flatpak to use the catppuccin GTK theme..."
+mkdir -p ~/.config/gtk-4.0
+ln -s  ~/.themes/Catppuccin-Macchiato-Standard-Teal-Dark/gtk-4.0/assets ~/.config/gtk-4.0
+ln -s ~/.themes/Catppuccin-Macchiato-Standard-Teal-Dark/gtk-4.0/gtk.css ~/.config/gtk-4.0/gtk.css
+ln -s ~/.themes/Catppuccin-Macchiato-Standard-Teal-Darkgtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk-dark.css
 
-flatpak install gradience -y
-flatpak install org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark -y
-gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+sudo flatpak override --env=GTK_THEME=Catppuccin-Macchiato-Standard-Teal-Dark
 
-
+sudo flatpak override --filesystem=~/.themes
 sudo flatpak override --filesystem=xdg-config/gtk-4.0
 sudo flatpak override --filesystem=xdg-config/gtk-3.0
 sudo flatpak override --filesystem=xdg-config/Kvantum:ro

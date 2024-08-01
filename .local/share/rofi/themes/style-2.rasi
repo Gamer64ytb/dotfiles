@@ -1,6 +1,13 @@
-@import "~/.cache/wal/colors-rofi-dark.rasi"
-
 * {
+    bg-col:  #24273a;
+    bg-col-light: #24273a;
+    border-col: #24273a;
+    selected-col: #24273a;
+    blue: #8aadf4;
+    fg-col: #cad3f5;
+    fg-col2: #ed8796;
+    grey: #6e738d;
+
     width: 600;
     font: "JetBrainsMono Nerd Font 14";
 }
@@ -41,7 +48,7 @@ window {
     padding:                     0px;
     border:                      2px solid;
     border-radius:               20px;
-    border-color:                @normal-foreground;
+    border-color:                @fg-col;
     background-color:            transparent;
     cursor:                      "default";
 }
@@ -68,8 +75,8 @@ inputbar {
     border:                      0px solid;
     border-radius:               20px;
     border-color:                @selected;
-    background-color:            @normal-foreground;
-    text-color:                  @normal-background;
+    background-color:            @fg-col;
+    text-color:                  @foreground;
     children:                    [ "prompt", "entry" ];
 }
 
@@ -142,8 +149,8 @@ element normal.normal {
     text-color:                  @foreground;
 }
 element selected.normal {
-    background-color:            @selected-active-background;
-    text-color:                  @selected-normal-foreground;
+    background-color:            @fg-col;
+    text-color:                  black;
 }
 element-icon {
     background-color:            transparent;
